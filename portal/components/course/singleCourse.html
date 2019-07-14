@@ -219,21 +219,21 @@ on-confirm="deleteSecondTeacher()"
 		   <div excel-export file-name = "{{course.name}}_{{role.enrollmentrole}}" get-data = "getEnrolledUsersInRoleFull" param-obj = "{'param1':  role}" make-header="false" ng-show="displayedEnrollments[role.enrollmentroleid].users.length>0"></div>
 		   <hr>
 	   </div>
-	   <div>
+	   <div ng-if="isAdmin">
 			<p>Lessons in course</p>
 			<div class="scrolling-table-wrapper">
 				<div class="scrolling-table">
 					<table class="table-striped table-bordered table-hover midrows">
 						<thead>
 							<tr>
-								<th class="small-cell">שיעור מספר</th>
+								<th class="small-cell">שיעור#</th>
 								<th class="small-cell">תאריך</th>
 								<th class="small-cell">שעה</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="lesson in courseLessons">
-								<td class="small-cell">{{lesson.num}}</td>
+								<td class="small-cell" ng-click="goToLessonPage(lesson)">{{lesson.num}}</td>
 								<td class="small-cell">{{lesson.date}}</td>
 								<td class="small-cell">{{lesson.hour}}</td>
 							</tr>

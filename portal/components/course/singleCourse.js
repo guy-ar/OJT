@@ -228,7 +228,7 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
 	// To get all the lesson of a single course:
 	// Function name: GetLessonsOfCourse
 	// Input: courseid
-	function getLessonsOfCourse() {
+	$scope.getLessonsOfCourse = function () {
 		var data = {};
 		data.courseid = $scope.courseid;
         server.requestPhp(data, "GetLessonsOfCourse").then(function(data) {
@@ -247,7 +247,7 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
 	// {lessonid: "726", checkin: "1505307337", num: "1", ignoreMe: "0", beginningdate: "1505340040926"}
  	
 	
-	getLessonsOfCourse();
+	$scope.getLessonsOfCourse();
 
 
     // $scope.TeachersEnrollmentTags = [];
@@ -419,7 +419,16 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
                 userId: user.userid
             });
         }
-    };
+	};
+	
+	$scope.goToLessonPage= function(lesson) {
+        if($rootScope.isAdmin) {
+            $state.transitionTo('singleLesson', {
+				lessonId: lesson.lessonid,
+				lessonNum: lesson.num
+            });
+        }
+	};
 
 
     $scope.UpdateUserReligion = function(user) {
