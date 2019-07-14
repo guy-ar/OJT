@@ -223,7 +223,32 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
 		});
     }
 
-    getEnrollmentRoles();
+	getEnrollmentRoles();
+	
+	// To get all the lesson of a single course:
+	// Function name: GetLessonsOfCourse
+	// Input: courseid
+	function getLessonsOfCourse() {
+		var data = {};
+		data.courseid = $scope.courseid;
+        server.requestPhp(data, "GetLessonsOfCourse").then(function(data) {
+            $scope.courseLessons = data;
+			console.log($scope.courseLessons);
+			for (var i = 0; i < data.length; i++)
+			{
+				var tempDate = new Date(parseInt(data[i].beginningdate));
+				$scope.courseLessons[i].date = moment(tempDate).format('DD/MM/YY');
+				$scope.courseLessons[i].hour = moment(tempDate).format('HH:mm');
+			}
+        });
+	}
+
+	// returned data for example:
+	// {lessonid: "726", checkin: "1505307337", num: "1", ignoreMe: "0", beginningdate: "1505340040926"}
+ 	
+	
+	getLessonsOfCourse();
+
 
     // $scope.TeachersEnrollmentTags = [];
 	//
