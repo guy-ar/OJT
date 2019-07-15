@@ -5,6 +5,7 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
 	//console.log($rootScope);
 
 	$scope.courseid = $stateParams.courseId;
+	//$rootScope.$emit('setSelectedCourse', { courseId: $scope.courseid });
 
     $scope.alertcontrol={};
 
@@ -425,7 +426,8 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
         if($rootScope.isAdmin) {
             $state.transitionTo('singleLesson', {
 				lessonId: lesson.lessonid,
-				lessonNum: lesson.num
+				lessonNum: lesson.num,
+				courseId: $scope.courseid
             });
         }
 	};

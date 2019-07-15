@@ -3,6 +3,14 @@ apple.controller('singleLesson', ['$rootScope', '$scope', '$state', '$stateParam
 
     $scope.lessonId = $stateParams.lessonId;
     $scope.lessonNum = $stateParams.lessonNum;
+    $scope.courseId = $stateParams.courseId;
+    
+    // $scope.$on('setSelectedCourse', function(event, data) { 
+    //     console.log("course ID was selected: " + data); 
+    //     $scope.courseId= data.courseId;
+    
+    // });
+     
     
 				
     // To get student attendance in a single lesson :
@@ -99,7 +107,9 @@ apple.controller('singleLesson', ['$rootScope', '$scope', '$state', '$stateParam
 		
 	}
 
-
+    $scope.backSingleCourse = function(){
+		$state.transitionTo('singleCourse', {courseId: $scope.courseId});
+	};
        
 
-    }]);
+}]);

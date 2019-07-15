@@ -158,9 +158,14 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
 		}
 	})
 	.state("singleLesson", {
-		url: "/singleLesson/:lessonId?lessonNum&",
+		url: "/singleLesson/:lessonId?lessonNum&?courseId&",
         params:{
 			lessonNum:
+			{
+				dynamic: true,
+				value:""
+			},
+			courseId:
 			{
 				dynamic: true,
 				value:""
