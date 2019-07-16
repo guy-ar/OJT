@@ -79,8 +79,7 @@ apple.controller('singleLesson', ['$rootScope', '$scope', '$state', '$stateParam
         var async = $q.defer(); 
         if (student.checkstudentid==null) {
             data.lessonid=$scope.lessonId;
-            data.status = student.attendanceStatus;
-            data.student = student.userid;
+            data.student = student;
             console.log(data);
             server.requestPhp(data, 'AddCheckStudentStatus').then(function (data) {
                 console.log("Success in saving status");
@@ -92,8 +91,7 @@ apple.controller('singleLesson', ['$rootScope', '$scope', '$state', '$stateParam
             return async.promise;
         } else {
             data.lessonid=$scope.lessonId;
-            data.status = student.attendanceStatus;
-            data.student = student.userid;
+            data.student = student;
             console.log(data);
             server.requestPhp(data, 'UpdateCheckStudentStatus').then(function (data) {
                 console.log("Success in saving status");
